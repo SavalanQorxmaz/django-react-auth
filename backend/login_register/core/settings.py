@@ -127,8 +127,32 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.CustomUser"
 
+# SMTP Serverindən istifadə edərək email göndərmək
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Gmail istifadə edirsinizsə
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True  # Təhlükəsizlik üçün TLS istifadə edilir
+EMAIL_HOST_USER = 's.tariverdiyev@gmail.com'  # Sizin e-poçtunuz
+EMAIL_HOST_PASSWORD = 'gfem jizj olwi lxgd'  # Gmail üçün App Password istifadə edin
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
+}
+
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.redis.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",  # Redis server ünvanı
+#     }
+# }
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "otp_cache",
+    }
 }
