@@ -1,4 +1,7 @@
 from django.conf import settings
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 if not settings.configured:
     settings.configure(
@@ -20,4 +23,6 @@ from datetime import datetime, timedelta
 now = datetime.now()
 tomorrow = now + timedelta(seconds=3000)
 
-print((tomorrow - now).total_seconds(), timedelta(seconds=3000))
+# print((tomorrow - now).total_seconds(), timedelta(seconds=3000))
+test = os.getenv('TEST')
+print(test)
