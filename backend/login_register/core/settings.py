@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'users'
+    'users',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -130,13 +131,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-# SMTP Serverindən istifadə edərək email göndərmək
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Gmail istifadə edirsinizsə
+EMAIL_HOST = 'smtp.gmail.com' 
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True  # Təhlükəsizlik üçün TLS istifadə edilir
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # Sizin e-poçtunuz
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # Gmail üçün App Password istifadə edin
+EMAIL_USE_TLS = True 
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 REST_FRAMEWORK = {

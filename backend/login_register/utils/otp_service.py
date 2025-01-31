@@ -5,6 +5,7 @@ from django.conf import settings
 from datetime import timedelta, datetime
 from rest_framework_simplejwt.tokens import AccessToken
 from utils.constants import OTP_LIFE_TIME
+from dotenv import load_dotenv
 
 class OTPService:
     @staticmethod
@@ -18,7 +19,7 @@ class OTPService:
         now = datetime.now()
         time_passed = (now - created_at).total_seconds()
         remaining_time = OTP_LIFE_TIME - time_passed
-        print(remaining_time)
+        print('remaining_time: ',remaining_time)
         if remaining_time < 60:
             return OTP_LIFE_TIME
         return  remaining_time
@@ -31,12 +32,14 @@ class OTPService:
         access = AccessToken()
         access["email"] = email
         access["otp"] = otp
-        access.set_exp(lifetime=timedelta(minutes=minutes, seconds=seconds))  # Token 5 dəqiqəlik etibarlıdır
+        access.set_exp(lifetime=timedelta(minutes=minutes, seconds=seconds)) 
         return str(access)
     
     @staticmethod
     def send_otp_via_email(email, otp, seconds):
         """OTP kodunu istifadəçiyə göndərir"""
+        print(settings.BASE_DIR)
+        print(settings.DEFAULT_FROM_EMAIL)
         minutes = seconds // 60
         seconds = seconds % 60
         subject = "Sizin OTP Kodu"
